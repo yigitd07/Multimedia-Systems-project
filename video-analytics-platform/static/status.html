@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Status Viewer</title>
+</head>
+<body>
+  <h1>Status</h1>
+  <pre id="status-box">Loading...</pre>
+
+  <script>
+    async function fetchStatus() {
+      const res = await fetch("http://127.0.0.1:8003/status");
+      const data = await res.json();
+      document.getElementById("status-box").textContent = JSON.stringify(data, null, 2);
+    }
+
+    // Her saniyede bir güncelle
+    setInterval(fetchStatus, 1000);
+    fetchStatus();
+  </script>
+</body>
+</html>
